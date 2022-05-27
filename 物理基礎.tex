@@ -1,0 +1,417 @@
+\documentclass[a4j,11pt,twocolumn]{jsarticle}
+%jbbok:書籍・jsarticle:論文，短い文書・jreport:レポート・letter:手紙
+\setlength{\topmargin}{-0.3in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textheight}{46\baselineskip}
+\setlength{\textwidth}{47zw}
+\usepackage{amsmath,amsfonts,amssymb,mathtools,ascmac}
+\usepackage{bm}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{float}
+\usepackage{comment}
+\usepackage{fancybox}
+\usepackage[margin=20truemm]{geometry}
+\usepackage{tikz}
+    \usetikzlibrary{intersections,calc,arrows.meta,backgrounds}
+\usepackage{calc}
+%\usepackage{multicol}
+%\setlength{\columnsep}{5mm}
+\setcounter{section}{-1}
+\columnseprule=0.1mm
+\title{\vspace{-2cm}物理基礎}
+\author{MIZOGUCHI Koki\thanks{Kochi University of Technology }}
+\date{}
+\begin{document}
+
+\renewcommand{\thesubsubsection}{\thesubsection\scriptsize--\Alph{subsubsection}}
+\newcommand{\例}{\centerline{\dotfill{}例\dotfill{}}\par}
+\newcommand{\unit}[1]{[#1]}
+
+\maketitle
+\section{物理事始}
+\subsection{惜しまず図を描く！}
+物理はとにかく今何が起きているのかが重要．そのためにはしっかりと場面場面の図を惜しまず書き直すことが大切．そして必要な事項はしっかりと書き込む．\par
+\textbf{暗記ではなく，理屈を．}何が起きているのかをしっかりと理解しよう．そして，わからないことがあったら\textbf{何を解らないのかを言葉にして説明してみよう．}\par
+\subsection{グラフを活用する}
+グラフにある情報は思ったより多い．例えば\(v\)-\(t\)図においては，グラフで囲まれた範囲は変位になる．グラフをしっかり読み取ろう！
+\subsection{どちらを正にして考えるか}
+物理では，数値の大きさはもちろん，向きも重要である．例えば，ある運動する物体があるとする．その運動はどのくらいの速さなのか．そして\underline{どの方向に運動しているか}．どの方向に運動しているかは，どちらを正（プラス）に考えるかで異なる．例えば，北向きを正とするならば，
+南向きに運動する物体は負の運動をしているといえる．今回は北向きを正と決めたが，問題文中にどちらを正にして考えるか指定してある場合もあれば，自分で指定しないといけない場合もある．どちらを正にするかを決めることは，現象を理解する重要な過程である．
+\subsection{単位}
+物理において，単位はとても重要．例えば$1$という数値が何を表すのか．長さ，質量，時間など様々な物理量があるが，その表し方もそれぞれである．\par
+例えば，時間．\unit{秒}\unit{分}\unit{時}と表し方は様々．\unit{時}で計算するのか\unit{秒}で計算するのか，その選択によって計算結果が大きく異なる．それを防ぐために，\textbf{この単位で計算しましょう}と決められている．（国際単位系 SI）表\ref{国際単位系 SI}に記載．\par
+また，大きな数字や小さな数字を表すのに便利な接頭辞も国際的に定められている．（SI接頭辞）例えば，世の中全ての長さを（メートル）に統一すると，かなり不便である．そこで，$1000$を$1$つの塊として（キロ）という接頭辞を与えた．それにより$1000$mを$1$kmで表すことができた．$1$キロは$10^3$である．代表的なものを表\ref{SI接頭辞}に記載．\par
+国際単位系のなかで，質量のみキログラムが基本単位となっているので注意．
+\begin{table}[hbtp]
+    \centering
+    \caption{国際単位系 SI}
+    \label{国際単位系 SI}
+    \begin{tabular}{p{5em}p{6em}p{6em}}
+        \hline
+        物理量 & SI単位の名称 & SI単位の記号 \\
+        \hline
+        長さ & メートル & m\\
+        質量 & キログラム & kg\\
+        時間 & 秒 & s\\
+        電流 & アンペア & A\\
+        熱力学温度 & ケルビン & K\\
+        物質量 & モル & mol\\
+        光度 & カンデラ & cd\\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{table}[hbtp]
+    \centering
+    \caption{SI接頭辞}
+    \label{SI接頭辞}
+    \begin{tabular}{p{5em}p{6em}p{6em}}
+        \hline
+        記号 & 接頭語 & $10^n$\\
+        \hline
+        k & キロ & $10^3$\\
+        c & センチ & $10^{-2}$\\
+        m & ミリ & $10^{-3}$\\
+        \hline
+    \end{tabular}
+\end{table}
+\subsection{変化量}
+変化量は，物理では欠かせない概念．「変化」つまり，どれだけ増えたか減ったかは，重要である．変化量は以下のように定義される．
+\[\mbox{変化量}=\mbox{変化後}-\mbox{変化前}\]
+変化量には，ギリシャ文字の$\Delta$（デルタ）が用いられる．例えば速度$v$の変化量であれば，$\Delta v$と表す．
+\newpage
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
+
+\part{物体の運動とエネルギー}
+\section{物体の運動}
+\subsection{速さと速度}
+\subsubsection{速さ}
+物体が運動するとき，単位時間あたりの移動距離（移動距離を経過時間でわったもの）を\textbf{速さ}という．
+\begin{align}
+    v=\dfrac{\mbox{移動距離}}{経過時間}=\dfrac{x}{l}
+\end{align}
+\indent 速さの単位は，距離と時間の単位の取り方によって異なる．距離の単位をメートル\unit{m}，時間の単位を秒\unit{s}とすれば，速さの単位は\textbf{メートル毎秒}となる．物理の速さは通常\textbf{メートル毎秒}を使用する．
+\subsubsection{速度}
+速さと運動の向きを合わせてもつ量を\textbf{速度}という．\par
+例：\underline{北向きを正とする}．北向きに速さ$3$m/sで運動する物体の速度は$3$m/sである．\par
+それに対して，南向きに速さ$3$m/sで運動する物体の速度は$-3$m/sである．\par
+速度の絶対値が速さである．速度はベクトル量であるので，「速い」「遅い」ではなく，「大きい」「小さい」という．
+\subsubsection{平均の速度}
+任意の区間における単位時間あたりの変位のことを\textbf{平均の速度}という．\par
+\begin{align}
+    \bar{v}=\dfrac{x_2-x_1}{t_2-t_1}=\dfrac{\Delta x}{\Delta t}\label{平均の速度}
+\end{align}
+\centerline{\dotfill{}例\dotfill{}}\par
+物体Aが運動している．ある時刻$t_1$から$t_2$の間に，この物体は$x_1$から$x_2$へ一直線上を移動した．この時，時間の変化量$\Delta t$は$t_2-t_1$であり，変位$\Delta x$は$x_2-x_1$である．
+$\Delta x$間の単位時間あたりの変位は，式（\ref{平均の速度}）である．\\
+\dotfill
+\subsubsection{瞬間の速度}
+平均の速度での式（\ref{平均の速度}）の$t_2$を限りなく$t_1$に近づけると，$t_1$の瞬間の速度を知ることがきる．
+\subsubsection{変位}\label{sec:変位}
+変位とは，今現在の位置からどれだけ移動したかのベクトル量．各点の位置と変位は図\ref{tikz:各点の位置関係}，表\ref{tabular:変位表}\\
+\begin{figure}[ht]
+    \centering
+    \caption{各点の位置関係}
+    \label{tikz:各点の位置関係}
+    \begin{tikzpicture}
+        \draw[very thick,->](2.5,0.5)--(3,0.5)node[right]{[$+$]};
+        \draw[thick,->,>=LaTeX](-3,0)--(3,0)node[right]{$x$};
+        \draw(0,0)node[above]{0};
+        \fill[black](0,0)circle[radius=0.06]node[below]{A};
+        \fill[black](2,0)circle[radius=0.06]node[below]{B};
+        \fill[black](-2,0)circle[radius=0.06]node[below]{C};
+        \draw(2,0)node[above]{2};
+        \draw(-2,0)node[above]{-2};
+    \end{tikzpicture}
+\end{figure}
+\begin{table}[H]
+    \centering
+    \caption{各点の変位}
+    \label{tabular:変位表}
+    \begin{tabular}{rr}
+        \hline
+        AからBの変位 & $2$\\
+        AからCの変位 & $-2$\\
+        BからCの変位 & $-4$\\
+        \hline
+    \end{tabular}
+\end{table}
+距離には負の値が存在しないが，変位には負の値が存在する．$(x,y)$で考えると，地点Aから地点Bへの変位$\Delta\vec{r}$は以下のようになる．
+\begin{align}
+    \Delta\vec{r}=\vec{r}_2-\vec{r}_1
+\end{align}
+\indent 途中で折り返したり，一直線でない運動をする場合は，変位の大きさと移動距離は異なる．
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \coordinate (A) at (1,2);
+        \coordinate (B) at (5,4);
+        \draw[thick,->,>=LaTeX](-0.3,0)--(0,0)node[below left]{O}--(6,0)node[right]{$x$};
+        \draw[thick,->,>=LaTeX](0,-0.3)--(0,0)node[below left]{O}--(0,4)node[above]{$y$};
+        \fill[black](0,0) circle [radius = 0.06];
+        \fill[black](A) circle [radius = 0.06]node[above left]{A};
+        \fill[black](B) circle [radius = 0.06]node[above left]{B};
+        \draw[thin, ->](0,0)--($(0,0)!0.5!(A)$)node[above left]{$\vec{r}_1$}--(A);
+        \draw[thin](0,0)--($(0,0)!0.5!(B)$)node[below right]{$\vec{r}_2$}--(B);
+        \draw[very thick,->,>=LaTeX](A)--($(A)!0.5!(B)$)node[above]{$\Delta\vec{r}$}--(B);
+    \end{tikzpicture}
+\end{figure}
+\begin{comment}
+\subsection{位置ベクトル}
+大きさと向きを持った量を\textbf{ベクトル}という．\par
+位置を表すベクトルを，\textbf{位置ベクトル}という．\par
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,->](-0.3,0)--(0,0)node[below left]{O}--(3,0)node[right]{$x$};
+        \draw[thick,->](0,-0.3)--(0,0)node[below left]{O}--(0,3)node[above]{$y$};
+        \fill[black](0,0) circle [radius = 0.06];
+        \draw[very thick, ->](0,0)--(1.25,1.25)node[below right]{$\vec{r}$}--(2.45,2.45);
+        \fill[black](2.5,2.5) circle [radius = 0.06]node[above]{A};
+        \draw[dashed](0,2.5)node[left]{$3$}--(2.2,2.5);
+        \draw[dashed](2.5,0)node[below]{$3$}--(2.5,2.2);
+    \end{tikzpicture}
+\end{figure}
+Aの座標を$(3,3)$とする．Oから見てAは右斜め前にある．また，O-Aの距離は$3\sqrt{2}$である．\par
+$\vec{r}$はOから見て地点Aを示し，右斜め前という向きと$3\sqrt{2}$という大きさを持った位置ベクトルである．
+\subsubsection{変位}
+\end{comment}
+\subsection{等速直線運動}
+一直線状を一定の速さで進む運動を\textbf{等速直線運動}という．
+\begin{itembox}[l]{等速直線運動}
+    \begin{align}
+        x=vt
+    \end{align}
+\scriptsize
+\begin{tabular}{lll}
+    $x$ & \unit{m/s} & 変位（第\ref{sec:変位}節）\\
+    $v$ & \unit{m/s} & 速さ\\
+    $t$ & \unit{m/s} & 経過時間\\
+\end{tabular}
+\end{itembox}
+\normalsize
+\newpage
+\subsection{速度の合成}
+\begin{align}
+    v=v_1+v_2
+\end{align}
+\centerline{\dotfill{}例\dotfill{}}\par
+川の流れの向きを正とする．川Aは$2$m/sで流れている．そこに止まっている川の流れの時に速さ$5$m/sの船がやってきた．この船の川A上での速さは幾らかとう問いがあるとする．速度の合成をして解答は以下．
+\[2+5=7\mbox{m/s}\]
+\dotfill
+\subsection{相対速度}
+例えば，観測者Aは静止している地面から$40$km/hで走行している車Bを観測する．観測者Aはその車を「$40$km/hで走行している」と観測する．\par
+しかし，観測者Aも別の移動手段で，車Bと同じ方向に$40$km/hの速さで走行しているとき，観測者Aはその車Bを「$0$km/hで走行している」と観測する．\par
+このように，観測者Aから見た車Bの速度を，\textbf{Aに対するBの相対速度}という．
+\begin{itembox}[l]{相対速度}
+    \begin{align}
+        v_{AB}=v_B-v_A
+    \end{align}
+    \scriptsize
+    \begin{tabular}{lll}
+        $v_{AB}$ & \unit{m/s} & Aに対するBの相対速度 \\
+        $v_B$ & \unit{m/s} & 地面（基準）に対する相手Bの速度\\
+        $v_A$ & \unit{m/s} & 地面（基準）に対する観測者Aの速度\\
+    \end{tabular}
+    \end{itembox}
+    \normalsize    
+\subsection{加速度}
+\subsubsection{加速度の定義}
+単位時間（1s）あたりの速度の変化を\textbf{加速度}という．つまり，1秒あたりどれだけ速く（遅く）なったかの値．単位はメートル毎秒毎秒\unit{$\mbox{m/s}^2$}．
+\begin{itembox}[l]{加速度}
+    \begin{align}
+        a=\dfrac{\mbox{速度の変化}}{経過時間}=\dfrac{v_2-v_1}{t_2-t_1}=\dfrac{\Delta v}{\Delta t}\label{式：加速度}
+    \end{align}
+    \scriptsize
+    \begin{tabular}{lll}
+        $a$ & \unit{$\mbox{m/s}^2$} & 加速度 \\
+        $t_1,t_2$ & \unit{s} & 時刻 $t_1<t_2$\\
+        $\Delta t$ & \unit{s} & 経過時間\\
+        $v_1,v_2$ & \unit{m/s} & $t_1,t_2$での速度\\
+        $\Delta v$ & \unit{m/s} & 速度の変化\\
+    \end{tabular}
+    \end{itembox}
+    \normalsize  
+\subsubsection{加速度の向き}
+加速度は速度と同様にベクトル量であるので，「向き」が存在する．\par
+\centerline{\dotfill{}例\dotfill{}}\par
+右向きを正とする．\par
+右向きに直進している車の速度が大きくなっているとき，つまり速くなっているときの加速度$a$は正である．（$a>0$）\par
+逆に，右向きに直進している車の速度が小さくなっているとき，つまり減速しているときの加速度$a$は負である．（$a<0$）\par
+また，左向きに直進している車の速度が大きくなっているとき，つまり左向きに加速しているときの加速度$a$は負である．（$a<0$）\par
+また，等速直線運動は，「等速」つまり速度が一定で，速度の変化量$\Delta v$が$0$であるので，加速度$a$も$0$である．（$a=0$）\\
+\dotfill
+\subsection{等加速度直線運動}
+\subsubsection{等加速度直線運動の定義と式}
+なめらかな斜面上で物体を静かに離すと，物体は一定の加速度で運動する．このような運動を\textbf{等加速度直線運動}という．\par
+\noindent\fbox{速度を表す式}\par
+加速度$a$\unit{m/s${}^2$}で等加速度直線運動している物体を考える．時刻$0$\unit{s}における物体の速度（\textbf{初速度}）を$v_0$\unit{m/s}，時刻$t$\unit{s}における速度（\textbf{終端速度}）を$v$\unit{m/s}とする．式（\ref{式：加速度}）より，次の式が得られる．
+\begin{align}
+    v=v_0+at\label{式：等加速度運動：速度}
+\end{align}
+\noindent\fbox{変位を表す式}\par
+上の等加速度直線運動で，物体が$t=0$sに$x$軸の原点（$x=0$m）を通過したとすると，時刻$t$\unit{s}における物体の位置$x$\unit{m}は，図\ref{fig:vt図}の台形の面積に等しいので，次式で表せる．
+\begin{align}
+    x=v_0t+\dfrac{1}{2}at^2\label{式：等加速度運動：変位}
+\end{align}
+\noindent\fbox{$t$を消去した式}\par
+さらに，式（\ref{式：等加速度運動：速度}）（\ref{式：等加速度運動：変位}）より$t$を消去し，整理すると次式が得られる．
+\begin{align}
+    v^2-{v_0}^2=2ax\label{式：等加速度運動：tなし}
+\end{align}
+\newpage
+\begin{itembox}[l]{等加速度直線運動}
+    \begin{align*}
+        &v=v_0+at\\
+        &x=v_0t+\dfrac{1}{2}at^2\\
+       & v^2-{v_0}^2=2ax
+    \end{align*}
+\end{itembox}
+\begin{figure}[H]
+    \centering
+    \caption{$v$-$t$図}
+    \label{fig:vt図}
+    \begin{tikzpicture}
+        \coordinate (O) at (0,0);
+        \coordinate (v0) at (0,1);
+        \coordinate (v) at (4,2.5);
+        \coordinate (vTt) at (4,0);
+        \coordinate (A) at ($(v0)!0.5!(vTt)$);
+        \coordinate (B) at ($(v)!(v0)!(vTt)$);%v0からの垂線
+        \coordinate (C) at ($(v0)!0.66!($(B)!0.5!(v)$)$);
+
+        \fill[fill = gray!10](O)--(v0)--(4,1)--(vTt)--cycle;
+        \fill[fill = gray!20](v0)--(v)--(4,1)--cycle;
+
+        \draw (A)node{$v_0t$};
+        \draw (C)node{$\frac{1}{2}at^2$};
+        \draw (v)edge[bend left = 20]node[right]{$at$}(B);
+        \draw (B)edge[bend left = 20]node[right]{$v_0$}(vTt);
+
+        \draw[name path = tShaft,thick,->,>=LaTeX](0,0)--(5,0)node[right]{$t$（s）};%時間軸
+        \draw[name path = vShaft,thick,->,>=LaTeX](0,0)--(0,3)node[above]{$v$（m/s）};%速度軸
+        \draw(O)node[below left]{O};
+
+        \draw[very thick](v0)node[left]{$v_0$}--(v)node[right]{$v=v_0+at$};
+        \foreach \Point in {O,v0,v} \fill[black] (\Point) circle [radius = 0.06];
+        \draw[dashed](v)--(0,2.5)node[left]{$v$};
+        \draw[dashed](v)--(vTt)node[below]{$t$};
+        \draw[dashed]($(v)!(v0)!(vTt)$)--(v0);
+    \end{tikzpicture}
+\end{figure}
+\indent$v$-$t$図における，$a$は，直線の傾きである．
+\subsubsection{加速度が負の運動}
+なめらかな斜面に沿って上向きに$x$軸をとり，原点Oから，時刻$0$sに正の向きに初速度$v_0$\unit{m/s}を与えて小球を打ち出す．その時の$v$-$t$図と$x$-$t$図はそれぞれ図\ref{fig:v-t2}，図\ref{fig:v-t3}のようになり，小球は最高点に到達する時刻$t_1$までは正の向きに進み，\textbf{最高点で速度が$0$になる}．この時の変位の最大値は，時刻$t_1$の時に$x_1$である．\par
+このような加速度が負な等加速度直線運動であっても，\textbf{加速度が一定で，直線の運動であれば，時刻$t$での速度$v$や変位$x$について，式（\ref{式：等加速度運動：速度}）〜（\ref{式：等加速度運動：tなし}）が成り立つ}．
+\newpage
+
+\begin{figure}[h]
+    \caption{}
+    \label{fig:v-t2}
+    \begin{tikzpicture}
+            \def\G{{-1 * \t + 3}}
+            \def\vtG{plot(\t,\G)}
+            \coordinate (C) at (5,-2);
+            \coordinate (O) at (0,0);    
+            \draw[name path = tShaft,thick,->,>=LaTeX](0,0)--(6.4,0)node[right]{$t$};%t軸
+            \draw[name path = vShaft,thick,->,>=LaTeX](0,-2.5)--(0,4)node[above]{$v$};%v軸
+            \draw[name path = vtGlaph,very thick,domain = 0:5,variable=\t]\vtG;
+            \draw[name path = CD,dashed](5,0)node[above]{D}node[below right]{$t_2$}--(C)node[right]{C};   
+            \draw[name path = vC,dashed](C)--(0,-2)node[left]{$v$};
+            \path[name intersections = {of = vShaft and vtGlaph, by={A}}];
+            \path[name intersections = {of = tShaft and vtGlaph, by={B}}];
+        \begin{scope}[on background layer]
+            \fill[fill = gray!10](O)--(A)--(B)--cycle;
+            \fill[fill = gray!50](B)--(C)--(5,0)--cycle;
+        \end{scope}
+
+        \foreach \P in {A,B} \fill[black] (\P) circle [radius = 0.06]node[above right]{\P};
+        \foreach \P in {O,C} \fill[black] (\P) circle [radius = 0.06];
+        \draw(B)node[below left]{$t_1$};
+        \draw(A)node[left]{$v_0$};
+        \draw(O)node[left]{O};
+        \draw ($(O)!0.5!(B)$)node[above]{\scriptsize{速度正}};
+        \draw ($(5,0)!0.5!(B)$)node[below]{\scriptsize{速度負}};    
+    \end{tikzpicture}
+\end{figure}
+\begin{figure}[h]
+    \caption{}
+    \label{fig:v-t3}
+    \begin{tikzpicture}
+        \def\G{{-1/2 * (\t)^2 + 3*\t}}
+        \def\vxG{plot(\t,\G)}
+        \draw[name path = tShaft,thick,->,>=LaTeX](0,0)--(6.4,0)node[right]{$t$};%t軸
+        \draw[name path = xShaft,thick,->,>=LaTeX](0,0)--(0,5)node[above]{$x$};%x軸
+        \coordinate (O) at (0,0);
+        \fill[black] (O) circle [radius = 0.06];
+        \draw[name path = vxGlaph1,thick,domain = 0:3,variable=\t,samples = 100]\vxG;
+        \draw[name path = vxGlaph2,very thick,domain = 3:6,variable=\t,samples = 100]\vxG;
+        \draw[dashed](3,9/2)--(3,0)node[below]{$t_1$};
+        \draw[dashed](0,9/2)node[left]{$x_1$}--(3,9/2);
+        \fill[black](3,9/2) circle [radius = 0.06];
+        \fill[black](6,0) circle [radius = 0.06]node[below]{$t_2$};
+        \draw (0,0)edge[bend right = 20]node[below]{\scriptsize{正の向きに進む}}(3,0);
+        \draw (3,0)edge[bend right = 20]node[below]{\scriptsize{負の向きに進む}}(6,0);
+    \end{tikzpicture}
+\end{figure}
+\newpage
+\subsection{重力加速度と自由落下}\label{重力加速度と自由落下}
+運動する物体の速度は，その物体の\textbf{質量に依存しない}．だが，実際は\textbf{空気抵抗}などの物体の運動を妨げる働きがあり，それは物体の形状や質量に依存するため，物体によって落下する速度が変わる．\par
+重力だけがはたらいて，初速度$0$で落下する物体の運動を\textbf{自由落下}という．\par
+この時の加速度を\textbf{重力加速度}といい，$g$で表す．重力加速度の大きさ$|g|$は，物体の質量によらず，約$9.8$m/s${}^2$である．\\\par
+物体が自由落下を始めた位置を原点Oとして，鉛直下向きに$x$軸をとる．（鉛直下向きが正）落下し始めた時刻を$0$sとして，時刻$t$\unit{s}時点の物体の速度を$v$\unit{m/s}，加速度$a$が鉛直下向き$g$\unit{m/s${}^2$}の等加速度直線運動をするので，
+等加速度直線運動の式（\ref{式：等加速度運動：速度}）〜（\ref{式：等加速度運動：tなし}）の加速度$a$を重力加速度$g$，初速度$v_0$に$0$\unit{m/s}を代入して以下の式が成り立つ．
+\begin{align}
+    & v=gt\\
+    & x=\dfrac{1}{2}gt^2\\
+    & v^2=2gx
+\end{align}
+\indent ちなみに，覚える必要は全くない．
+\subsection{鉛直投射}
+第\ref{重力加速度と自由落下}節の自由落下の初速度が$0$ではない場合を，鉛直投げ下ろしという．（覚えなくてよい．）
+\begin{align}
+    & v=v_0+gt\\
+    & x=v_0t+\dfrac{1}{2}gt^2\\
+    & v^2-{v_0}^2=2gx
+\end{align}
+\indent ちなみに，覚える必要は全くない．\par
+また，物体を鉛直上向きに初速度の大きさ$v_0$で投げ上げた時の運動を調べると，図\ref{fig:v-t2},\ref{fig:v-t3}のような$v$-$t$図と$x$-$t$図が得られる．
+鉛直上向きを正として考え，重力加速度を$-g$とすると，以下の式が得られる．
+\begin{align}
+    & v=v_0-gt\\
+    & x = v_0t-\dfrac{1}{2}gt^2\\
+    & v^2-{v_0}^2=-2gx
+\end{align}
+\indent ここで大切なのは，「変位」である．変位は$t=0$から$t=t$の時の移動下向きと大きさの値である．\par
+変位は\underline{移動距離ではない}ので，鉛直投げ上げに関して，投げ上げる直前から投げ上げた後に，原点に戻った時の変位を考えると，その変位は$0$である．\par
+\例
+鉛直投げ上げを例に挙げる．\par
+物体が時刻$t=0$で原点Oにあった．初速度$v_0$を加えて鉛直に投げ上げた．\par
+物体は$t=s$の時に，最高点に到達した．同じ経過時間で落下するので，最高点に到達した時からさらに$s$の経過時間を経て原点に戻る．\par
+原点に戻った時の，投げ上げてからの経過時間は$2s$である．\par
+経過時間$2s$に対して，物体の変位は，原点から原点への移動なので$0$である．\par
+この現象は変位の式（\ref{式：等加速度運動：変位}）に当てはめることができる．（ただし，鉛直下向きを正とする．）
+\[0=-v_0\cdot 2s+\dfrac{1}{2}g{(2s)}^2\]
+変形すると以下のようになる．
+\begin{align*}
+    & 0=-v_0\cdot 2s+\dfrac{1}{2}g{(2s)}^2\\
+    & v_0\cdot 2s=\dfrac{1}{2}g{(2s)}^2\\
+    & v_0=gs\ldots
+\end{align*}
+\indent ここで重要なのは，\textbf{変位が$0$}であることを理解できるかどうかである．\\
+\dotfill
+\subsection{放物線運動}
+\subsubsection{水平投射}
+\begin{screen}
+    水平方向：\par \hspace*{3em}投げ出した初速度で等速度運動をする．\\
+    鉛直方向：\par \hspace*{3em}自由落下と同じ運動をする．
+\end{screen}
+\subsubsection{斜方投射}
+\begin{screen}
+    水平方向：\par \hspace*{3em}等速度運動をする．\\
+    鉛直方向：\par \hspace*{3em}鉛直投げ上げと同じ運動をする．
+\end{screen}
+\newpage
+\section{力と運動}
+\end{document}
